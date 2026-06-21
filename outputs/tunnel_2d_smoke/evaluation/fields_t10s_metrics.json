@@ -1,0 +1,22 @@
+{
+  "prediction": "outputs/tunnel_2d_smoke/evaluation/fields_t10s.npz",
+  "reference": "outputs/tunnel_2d_smoke/evaluation/fields_t10s.npz",
+  "fields": {
+    "temperature": {
+      "mae": 0.0,
+      "rmse": 0.0,
+      "max_absolute_error": 0.0,
+      "relative_l2": 0.0,
+      "r2": 1.0,
+      "valid_points": 1281
+    },
+    "smoke": {
+      "mae": 0.0,
+      "rmse": 0.0,
+      "max_absolute_error": 0.0,
+      "relative_l2": 0.0,
+      "r2": 1.0,
+      "valid_points": 1281
+    }
+  }
+}

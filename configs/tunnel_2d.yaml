@@ -1,0 +1,104 @@
+seed: 2026
+
+domain:
+  length_x: 200.0
+  width_y: 10.0
+  height_z: 6.0
+  duration: 120.0
+
+scales:
+  velocity: 5.0
+  temperature: 300.0
+  smoke: 1.0e-3
+
+physics:
+  p0: 101325.0
+  ambient_temperature: 293.15
+  gravity: 9.81
+  gas_constant: 287.05
+  ambient_density: 1.204
+  cp: 1005.0
+  dynamic_viscosity: 1.81e-5
+  thermal_conductivity: 2.57e-2
+  smoke_diffusivity: 2.0e-5
+  turbulent_prandtl: 0.85
+  turbulent_schmidt: 0.70
+  smagorinsky: 0.17
+  filter_width: 0.125
+  sensible_heat_fraction: 1.0
+  radiation_beta: 2.27e-8
+  buoyancy_beta: 3.41e-3
+  wall_heat_transfer: 10.0
+  heat_of_combustion: 4.46e7
+  energy_smoke_yield: 1.12e-9
+  epsilon: 1.0e-8
+
+source:
+  total_hrr: 1.0e7
+  center: [100.0, 0.0, 0.125]
+  sigma: [0.50, 0.50, 0.25]
+
+model:
+  spatial_dimensions: 2
+  input_dim: 3
+  output_dim: 5
+  transformer_layers: 4
+  d_model: 256
+  attention_heads: 8
+  correction_heads: 2
+  ffn_width: 1024
+  mlp_layers: 4
+  mlp_width: 256
+  fourier_frequencies: 64
+  fourier_sigma: 1.0
+  local_window: 64
+  global_anchors: 32
+  sparse_switch: 4096
+  kappa_residual: 0.5
+  kappa_buoyancy: 0.1
+  modulation_layers: 2
+  modulation_width: 128
+  dropout: 0.0
+  diagonal_ad_context: true
+
+sampling:
+  initial_interior: 150000
+  initial_boundary: 25000
+  initial_initial: 25000
+  max_points: 300000
+  top_fraction: 0.10
+  sampling_exponent: 2.0
+  prune_threshold: 0.05
+  growth_gain: 0.10
+  saturation: 0.10
+  adapt_interval: 10000
+  evaluation_points: 50000
+  jitter_std: 0.01
+
+training:
+  adam_epochs: 30000
+  learning_rate: 1.0e-3
+  lr_decay: 0.95
+  lr_decay_interval: 1000
+  adam_betas: [0.9, 0.999]
+  adam_epsilon: 1.0e-8
+  pde_batch: 8192
+  bc_batch: 2048
+  ic_batch: 2048
+  gradient_clip: 1.0
+  lambda_pde: 1.0
+  lambda_bc: 100.0
+  lambda_ic: 100.0
+  lambda_latent: 0.1
+  log_interval: 100
+  checkpoint_interval: 1000
+  precision: float32
+  convergence_loss: 1.0e-4
+  convergence_residual: 1.0e-3
+  convergence_cycles: 3
+  lbfgs:
+    iterations: 20000
+    inner_iterations: 20
+    history_size: 100
+    tolerance_grad: 1.0e-8
+    tolerance_change: 1.0e-12

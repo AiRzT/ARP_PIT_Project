@@ -1,0 +1,105 @@
+seed: 7
+domain:
+  length_x: 200.0
+  width_y: 10.0
+  height_z: 6.0
+  duration: 120.0
+scales:
+  velocity: 5.0
+  temperature: 300.0
+  smoke: 0.001
+physics:
+  p0: 101325.0
+  ambient_temperature: 293.15
+  gravity: 9.81
+  gas_constant: 287.05
+  ambient_density: 1.204
+  cp: 1005.0
+  dynamic_viscosity: 1.81e-05
+  thermal_conductivity: 0.0257
+  smoke_diffusivity: 2.0e-05
+  turbulent_prandtl: 0.85
+  turbulent_schmidt: 0.7
+  smagorinsky: 0.17
+  filter_width: 0.125
+  sensible_heat_fraction: 1.0
+  radiation_beta: 2.27e-08
+  buoyancy_beta: 0.00341
+  wall_heat_transfer: 10.0
+  heat_of_combustion: 4.46e7
+  energy_smoke_yield: 1.12e-09
+  epsilon: 1.0e-08
+source:
+  total_hrr: 1.0e7
+  center:
+  - 100.0
+  - 0.0
+  - 0.125
+  sigma:
+  - 0.5
+  - 0.5
+  - 0.25
+model:
+  spatial_dimensions: 3
+  input_dim: 4
+  output_dim: 6
+  transformer_layers: 2
+  d_model: 64
+  attention_heads: 4
+  correction_heads: 1
+  ffn_width: 128
+  mlp_layers: 2
+  mlp_width: 64
+  fourier_frequencies: 8
+  fourier_sigma: 1.0
+  local_window: 8
+  global_anchors: 4
+  sparse_switch: 64
+  kappa_residual: 0.5
+  kappa_buoyancy: 0.1
+  modulation_layers: 1
+  modulation_width: 32
+  dropout: 0.0
+  diagonal_ad_context: true
+sampling:
+  initial_interior: 96
+  initial_boundary: 48
+  initial_initial: 48
+  max_points: 160
+  top_fraction: 0.1
+  sampling_exponent: 2.0
+  prune_threshold: 0.05
+  growth_gain: 0.1
+  saturation: 0.1
+  adapt_interval: 1
+  evaluation_points: 48
+  jitter_std: 0.01
+training:
+  adam_epochs: 2
+  learning_rate: 0.001
+  lr_decay: 0.95
+  lr_decay_interval: 1000
+  adam_betas:
+  - 0.9
+  - 0.999
+  adam_epsilon: 1.0e-08
+  pde_batch: 12
+  bc_batch: 8
+  ic_batch: 8
+  gradient_clip: 1.0
+  lambda_pde: 1.0
+  lambda_bc: 100.0
+  lambda_ic: 100.0
+  lambda_latent: 0.1
+  log_interval: 1
+  checkpoint_interval: 2
+  precision: float32
+  convergence_loss: 0.0001
+  convergence_residual: 0.001
+  convergence_cycles: 3
+  lbfgs:
+    iterations: 1
+    inner_iterations: 1
+    history_size: 5
+    tolerance_grad: 1.0e-08
+    tolerance_change: 1.0e-12
